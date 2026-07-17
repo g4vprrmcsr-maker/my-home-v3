@@ -832,7 +832,7 @@ body.dark.overlay-page { background: rgba(38, 36, 40, 0.98); }.overlay-bg {
 
 /* 7. 全部色块改圆形,颜色不变 */.color-dot { border-radius: 50%; }
 
-/* 5. 无气泡时AI消息几乎铺满,右边留一口气 */
+/* 5. 无气泡时AI消息几乎铺满,右边留一口气 */.msg-body-ai.bare-full { max-width: 96%; }
 
 /* ===== 相识页 v103 网格 ===== */.home-hero-card {
   border-radius: 26px;
@@ -955,93 +955,4 @@ body.dark.overlay-page { background: rgba(38, 36, 40, 0.98); }.overlay-bg {
   border-style: solid;
   border-width: 0 7px 8px 7px;
   border-color: transparent transparent var(--tail-c) transparent;
-}
-/* ==========================================
-   v104 追加补丁:贴在style.css最末尾
-   ========================================== */
-
-
-/* 3. 相识页通顶通底:壁纸从最顶铺到最底,横带消失 */
-#days-panel {
-  padding: 0;
-  height: 100vh;
-  height: 100dvh;
-}
-#days-panel.panel-header {
-  background: transparent;
-  border-bottom: none;
-  box-shadow: none;
-  padding-top: calc(10px + env(safe-area-inset-top));
-}
-
-/* Dock:高度位置交给拉条(JS写--dock-drop),图标填满坑 */.days-dock {
-  margin-bottom: var(--dock-drop, 10px);
-}.dock-slot {
-  position: relative;
-  overflow: hidden;
-  border-radius: 26%;
-}.dock-slot img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  padding: 0;
-  border-radius: 0;
-}
-
-/* 组件文字:胶囊摘掉后素字浮图上,保留换行排版 */.widget-label {
-  white-space: pre-wrap;
-  overflow: visible;
-  text-overflow: clip;
-  max-width: 94%;
-  text-align: center;
-  line-height: 1.5;
-}
-/* ==========================================
-   v105 修复补丁
-   ========================================== */
-
-/* 设置页字变大的真凶:PWA独立模式下iOS自动放大文字,这行焊死,字回原样 */
-html {
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-/* 拉角尾重做:直边贴气泡底边和侧边,斜边朝外,贴合角圆角归零,零缝隙 */.bs-pull-user {
-  border-bottom-right-radius: 0!important;
-}.bs-pull-user::after {
-  content: "";
-  position: absolute;
-  right: -8px;
-  bottom: 0;
-  width: 8px;
-  height: 11px;
-  background: var(--tail-c);
-  clip-path: polygon(0 0, 0 100%, 100% 100%);
-}.bs-pull-ai {
-  border-bottom-left-radius: 0!important;
-}.bs-pull-ai::after {
-  content: "";
-  position: absolute;
-  left: -8px;
-  bottom: 0;
-  width: 8px;
-  height: 11px;
-  background: var(--tail-c);
-  clip-path: polygon(100% 0, 100% 100%, 0 100%);
-}
-
-/* 两个2x2组件锁死同宽:右边图标格文字换行再也撑不歪它 */.home-grid-row {
-  align-items: flex-start;
-}.widget-2x2 {
-  flex: 0 0 calc(50% - 6px);
-  max-width: calc(50% - 6px);
-}.icon-quad {
-  flex: 1;
-}
-
-/* 组件文字:禁阴影 */.widget-label {
-  text-shadow: none;
-  background: none;
 }
